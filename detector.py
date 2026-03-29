@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 """
 Network Device Detector - Phát hiện PC, điện thoại và các thiết bị mạng khác
 Discord Style Edition - Fast Version
@@ -52,11 +52,11 @@ def print_banner():
 def print_menu():
     menu = f"""
 {Colors.BOLD_YELLOW}┌─────────────────────────────────────────────────────────────┐{Colors.RESET}
-{Colors.BOLD_YELLOW}│{Colors.RESET}  {Colors.BOLD_CYAN}[{Colors.DISCORD_GREEN}1{Colors.BOLD_CYAN}]{Colors.RESET} 🔍 Quét mạng một lần                        {Colors.BOLD_YELLOW}│{Colors.RESET}
-{Colors.BOLD_YELLOW}│{Colors.RESET}  {Colors.BOLD_CYAN}[{Colors.DISCORD_GREEN}2{Colors.BOLD_CYAN}]{Colors.RESET} 🔄 Quét mạng liên tục                      {Colors.BOLD_YELLOW}│{Colors.RESET}
-{Colors.BOLD_YELLOW}│{Colors.RESET}  {Colors.BOLD_CYAN}[{Colors.DISCORD_GREEN}3{Colors.BOLD_CYAN}]{Colors.RESET} 📊 Xem thông tin mạng                      {Colors.BOLD_YELLOW}│{Colors.RESET}
-{Colors.BOLD_YELLOW}│{Colors.RESET}  {Colors.BOLD_CYAN}[{Colors.DISCORD_GREEN}4{Colors.BOLD_CYAN}]{Colors.RESET} 💾 Xem lịch sử quét                        {Colors.BOLD_YELLOW}│{Colors.RESET}
-{Colors.BOLD_YELLOW}│{Colors.RESET}  {Colors.BOLD_CYAN}[{Colors.DISCORD_RED}0{Colors.BOLD_CYAN}]{Colors.RESET} 🚪 Thoát tool                              {Colors.BOLD_YELLOW}│{Colors.RESET}
+{Colors.BOLD_YELLOW}│{Colors.RESET}  {Colors.BOLD_CYAN}[{Colors.DISCORD_GREEN}1{Colors.BOLD_CYAN}]{Colors.RESET}  Quét mạng một lần                        {Colors.BOLD_YELLOW}│{Colors.RESET}
+{Colors.BOLD_YELLOW}│{Colors.RESET}  {Colors.BOLD_CYAN}[{Colors.DISCORD_GREEN}2{Colors.BOLD_CYAN}]{Colors.RESET}  Quét mạng liên tục                      {Colors.BOLD_YELLOW}│{Colors.RESET}
+{Colors.BOLD_YELLOW}│{Colors.RESET}  {Colors.BOLD_CYAN}[{Colors.DISCORD_GREEN}3{Colors.BOLD_CYAN}]{Colors.RESET}  Xem thông tin mạng                      {Colors.BOLD_YELLOW}│{Colors.RESET}
+{Colors.BOLD_YELLOW}│{Colors.RESET}  {Colors.BOLD_CYAN}[{Colors.DISCORD_GREEN}4{Colors.BOLD_CYAN}]{Colors.RESET}  Xem lịch sử quét                        {Colors.BOLD_YELLOW}│{Colors.RESET}
+{Colors.BOLD_YELLOW}│{Colors.RESET}  {Colors.BOLD_CYAN}[{Colors.DISCORD_RED}0{Colors.BOLD_CYAN}]{Colors.RESET}  Thoát tool                              {Colors.BOLD_YELLOW}│{Colors.RESET}
 {Colors.BOLD_YELLOW}└─────────────────────────────────────────────────────────────┘{Colors.RESET}
 """
     print(menu)
@@ -79,19 +79,19 @@ def classify_device(device):
     phones = ['iphone', 'android', 'samsung', 'xiaomi', 'oppo', 'vivo', 'mobile']
     for kw in phones:
         if kw in hostname or kw in mac:
-            return "📱 Điện thoại"
-    
+            return " Điện thoại"
+
     computers = ['pc', 'desktop', 'laptop', 'macbook', 'thinkpad', 'dell', 'hp', 'asus']
     for kw in computers:
         if kw in hostname or kw in mac:
-            return "💻 Máy tính"
+            return " Máy tính"
     
     networks = ['router', 'switch', 'gateway', 'modem', 'cisco', 'netgear', 'tp-link']
     for kw in networks:
         if kw in hostname or kw in mac:
-            return "🌐 Thiết bị mạng"
+            return " Thiết bị mạng"
     
-    return "❓ Thiết bị khác"
+    return " Thiết bị khác"
 
 class FastNetworkDetector:
     def __init__(self, timeout=0.5, max_workers=50):
@@ -261,7 +261,7 @@ class FastNetworkDetector:
             return
         
         print(f"\n{Colors.BOLD_CYAN}{'='*50}{Colors.RESET}")
-        print(f"{Colors.BOLD_WHITE}📜 LỊCH SỬ QUÉT{Colors.RESET}")
+        print(f"{Colors.BOLD_WHITE} LỊCH SỬ QUÉT{Colors.RESET}")
         for i, scan in enumerate(self.scan_history[-5:], 1):
             print(f"{Colors.DISCORD_GREEN}{i}.{Colors.RESET} {scan['time']} - {len(scan['devices'])} thiết bị")
 
@@ -291,7 +291,7 @@ def main():
                     detector.continuous_scan(10)
             
             elif choice == "3":
-                print(f"\n{Colors.BOLD_GREEN}📡 Mạng: {detector.network_base}.0/24{Colors.RESET}")
+                print(f"\n{Colors.BOLD_GREEN} Mạng: {detector.network_base}.0/24{Colors.RESET}")
                 input(f"\n{Colors.DISCORD_GREY}Enter để tiếp...{Colors.RESET}")
             
             elif choice == "4":
@@ -299,7 +299,7 @@ def main():
                 input(f"\n{Colors.DISCORD_GREY}Enter để tiếp...{Colors.RESET}")
             
             elif choice == "0":
-                print(f"\n{Colors.DISCORD_YELLOW}👋 Tạm biệt!{Colors.RESET}\n")
+                print(f"\n{Colors.DISCORD_YELLOW} Tạm biệt!{Colors.RESET}\n")
                 sys.exit(0)
             
             else:
@@ -307,7 +307,7 @@ def main():
                 time.sleep(1)
     
     except KeyboardInterrupt:
-        print(f"\n{Colors.DISCORD_YELLOW}👋 Thoát!{Colors.RESET}\n")
+        print(f"\n{Colors.DISCORD_YELLOW} Thoát!{Colors.RESET}\n")
 
 if __name__ == "__main__":
     main()
